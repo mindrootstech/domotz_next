@@ -32,7 +32,7 @@ const ACLPage = () => {
             <CardHeader title='Analytics' />
             <CardContent>
               <Typography sx={{ mb: 4 }}>User with 'Analytics' subject's 'Read' ability can view this card</Typography>
-              <Typography sx={{ color: 'error.main' }}>This card is visible to 'admin' only</Typography>
+              <Typography sx={{ color: 'error.main' }}>This card is visible to 'admin' only f</Typography>
             </CardContent>
           </Card>
         </Grid>

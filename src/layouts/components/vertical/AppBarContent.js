@@ -5,114 +5,50 @@ import IconButton from '@mui/material/IconButton'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
+
+// ** Next Import
+import { useRouter } from 'next/router'
+
+
 // ** Components
 import Autocomplete from 'src/layouts/components/Autocomplete'
-import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
-import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
-import LanguageDropdown from 'src/@core/layouts/components/shared-components/LanguageDropdown'
-import NotificationDropdown from 'src/@core/layouts/components/shared-components/NotificationDropdown'
-import ShortcutsDropdown from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
 
 // ** Hook Import
 import { useAuth } from 'src/hooks/useAuth'
+// ** Hooks
 
-const notifications = [
-  {
-    meta: 'Today',
-    avatarAlt: 'Flora',
-    title: 'Congratulation Flora! 🎉',
-    avatarImg: '/images/avatars/4.png',
-    subtitle: 'Won the monthly best seller badge'
-  },
-  {
-    meta: 'Yesterday',
-    avatarColor: 'primary',
-    subtitle: '5 hours ago',
-    avatarText: 'Robert Austin',
-    title: 'New user registered.'
-  },
-  {
-    meta: '11 Aug',
-    avatarAlt: 'message',
-    title: 'New message received 👋🏻',
-    avatarImg: '/images/avatars/5.png',
-    subtitle: 'You have 10 unread messages'
-  },
-  {
-    meta: '25 May',
-    title: 'Paypal',
-    avatarAlt: 'paypal',
-    subtitle: 'Received Payment',
-    avatarImg: '/images/misc/paypal.png'
-  },
-  {
-    meta: '19 Mar',
-    avatarAlt: 'order',
-    title: 'Received Order 📦',
-    avatarImg: '/images/avatars/3.png',
-    subtitle: 'New order received from John'
-  },
-  {
-    meta: '27 Dec',
-    avatarAlt: 'chart',
-    subtitle: '25 hrs ago',
-    avatarImg: '/images/misc/chart.png',
-    title: 'Finance report has been generated'
-  }
-]
-
-const shortcuts = [
-  {
-    title: 'Calendar',
-    url: '/apps/calendar',
-    icon: 'tabler:calendar',
-    subtitle: 'Appointments'
-  },
-  {
-    title: 'Invoice App',
-    url: '/apps/invoice/list',
-    icon: 'tabler:file-invoice',
-    subtitle: 'Manage Accounts'
-  },
-  {
-    title: 'User App',
-    icon: 'tabler:users',
-    url: '/apps/user/list',
-    subtitle: 'Manage Users'
-  },
-  {
-    url: '/apps/roles',
-    icon: 'tabler:lock',
-    subtitle: 'Permissions',
-    title: 'Role Management'
-  },
-  {
-    subtitle: 'CRM',
-    title: 'Dashboard',
-    url: '/dashboards/crm',
-    icon: 'tabler:device-analytics'
-  },
-  {
-    title: 'Settings',
-    icon: 'tabler:settings',
-    subtitle: 'Account Settings',
-    url: '/pages/account-settings/account'
-  },
-  {
-    icon: 'tabler:help',
-    title: 'Help Center',
-    url: '/pages/help-center',
-    subtitle: 'FAQs & Articles'
-  },
-  {
-    title: 'Dialogs',
-    icon: 'tabler:square',
-    subtitle: 'Useful Popups',
-    url: '/pages/dialog-examples'
-  }
-]
+import navigation from 'src/navigation/vertical'
+import { useEffect, useState } from 'react'
+import Typography from '@mui/material/Typography'
 
 const AppBarContent = props => {
+
+  const router = useRouter()
+  const { logout } = useAuth()
+
+  const handleLogout = () => {
+    logout()
+  }
+  const [pageName, setPageName] = useState('')
+
+
+  useEffect(() => {
+    let route = router.pathname;
+    console.log(route, 'route')
+    navigation().map(element => {
+      if (route == element.path) setPageName(element.title)
+      if (element.children && element.children.length != 0) {
+        element.children.map(child => {
+          if (route == child.path) {
+            setPageName(child.title)
+          }
+        })
+
+      }
+    });
+
+  }, [router.pathname])
+
   // ** Props
   const { hidden, settings, saveSettings, toggleNavVisibility } = props
 
@@ -122,6 +58,9 @@ const AppBarContent = props => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+        <Typography sx={{ fontWeight: 500, fontSize: '2rem', lineHeight: 1.385, color: '#4D4D4D' }}>
+          {pageName}
+        </Typography>
         {hidden && !settings.navHidden ? (
           <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
             <Icon fontSize='1.5rem' icon='tabler:menu-2' />
@@ -136,7 +75,10 @@ const AppBarContent = props => {
           <>
             {/* <ShortcutsDropdown settings={settings} shortcuts={shortcuts} /> */}
             {/* <NotificationDropdown settings={settings} notifications={notifications} /> */}
-            <UserDropdown settings={settings} />
+            <Box onClick={handleLogout} sx={{ cursor: 'pointer' }}>
+              <Icon style={{ backgroundColor: '#E1F1FF', color: '#4C4C4C', padding: "5px", fontSize: '2rem', borderRadius: '5px' }} icon='tabler:logout' />
+            </Box>
+            {/* <UserDropdown settings={settings} /> */}
           </>
         )}
       </Box>

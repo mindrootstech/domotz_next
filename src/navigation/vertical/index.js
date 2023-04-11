@@ -28,11 +28,19 @@ const navigation = () => {
       ]
     },
     {
-      path: '/acl',
+      path: '/sites-explore',
       action: 'read',
       subject: 'user-page',
       icon: 'tabler:shield',
-      title: 'Access Control',
+      title: 'Sites Explore',
+      type: 'customer'
+    },
+    {
+      path: '/inventory',
+      action: 'read',
+      subject: 'user-page',
+      icon: 'tabler:shield',
+      title: 'Inventory',
       type: 'customer'
     },
   ]

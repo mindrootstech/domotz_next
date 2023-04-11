@@ -59,9 +59,6 @@ const VerticalNavGroup = props => {
     navigationBorderWidth
   } = props
 
-  console.log({
-    props
-  })
 
   // ** Hooks & Vars
   const router = useRouter()

@@ -132,7 +132,7 @@ const LoginPage = () => {
   const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'
 
   return (
-    <Box className='content-right' sx={{ backgroundColor: 'background.paper', justifyContent: 'center' }} >
+    <Box className='content-right' sx={{ backgroundColor: '#082846', justifyContent: 'center' }} >
       {/* {!hidden ? (
         <Box
           sx={{
@@ -172,6 +172,7 @@ const LoginPage = () => {
             </Box>
             <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
               <FormControl fullWidth sx={{ mb: 4 }}>
+                <Typography sx={{ color: '#fff', fontSize: '14px' }}>Email </Typography>
                 <Controller
                   name='email'
                   control={control}
@@ -179,45 +180,51 @@ const LoginPage = () => {
                   render={({ field: { value, onChange, onBlur } }) => (
                     <TextField
                       autoFocus
-                      label='Email'
+                      // label='Email'
                       value={value}
                       onBlur={onBlur}
                       onChange={onChange}
                       error={Boolean(errors.email)}
-                      placeholder='admin@vuexy.com'
+                      InputProps={{
+                        placeholder: 'admin@vuexy.com',
+                        style: {
+                          color: '#fff',
+                          backgroundColor: '#082846'
+                        }
+                      }}
+                      InputLabelProps={{
+                        style: { color: '#fff' },
+                      }}
                     />
                   )}
                 />
                 {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
               </FormControl>
               <FormControl fullWidth sx={{ mb: 1.5 }}>
-                <InputLabel htmlFor='auth-login-v2-password' error={Boolean(errors.password)}>
-                  Password
-                </InputLabel>
+                <Typography sx={{ color: '#fff', fontSize: '14px' }}>Password </Typography>
                 <Controller
                   name='password'
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { value, onChange, onBlur } }) => (
-                    <OutlinedInput
+                    <TextField
+                      autoFocus
+                      // label='Password'
                       value={value}
                       onBlur={onBlur}
-                      label='Password'
                       onChange={onChange}
-                      id='auth-login-v2-password'
+                      type='password'
                       error={Boolean(errors.password)}
-                      type={showPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            edge='end'
-                            onMouseDown={e => e.preventDefault()}
-                            onClick={() => setShowPassword(!showPassword)}
-                          >
-                            <Icon icon={showPassword ? 'tabler:eye' : 'tabler:eye-off'} fontSize={20} />
-                          </IconButton>
-                        </InputAdornment>
-                      }
+                      InputProps={{
+                        placeholder: 'Password',
+                        style: {
+                          color: '#fff',
+                          backgroundColor: '#082846'
+                        }
+                      }}
+                      InputLabelProps={{
+                        style: { color: '#fff' },
+                      }}
                     />
                   )}
                 />
@@ -227,6 +234,7 @@ const LoginPage = () => {
                   </FormHelperText>
                 )}
               </FormControl>
+
               <Box
                 sx={{
                   mb: 1.75,
@@ -238,15 +246,16 @@ const LoginPage = () => {
               >
                 <FormControlLabel
                   label='Remember Me'
-                  control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />}
+                  control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} style={{ borderColor: 'red' }} />}
                 />
-                <LinkStyled href='/forgot-password'>Forgot Password?</LinkStyled>
+
               </Box>
-              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
+              <Box sx={{
+                mb: 1.75,
+              }}> <LinkStyled href='/forgot-password' sx={{ fontSize: '14px' }}>Forgot Password?</LinkStyled></Box>
+              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4, backgroundColor: '#fff', color: '#082846', borderRadius: '10px' }}>
                 Login
               </Button>
-
-
 
             </form>
           </Box>

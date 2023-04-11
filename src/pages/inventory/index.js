@@ -11,7 +11,7 @@ import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
-const ACLPage = () => {
+const Inventory = () => {
   // ** Hooks
   const ability = useContext(AbilityContext)
 
@@ -40,9 +40,9 @@ const ACLPage = () => {
     </Grid>
   )
 }
-ACLPage.acl = {
+Inventory.acl = {
   action: 'read',
   subject: 'acl-page'
 }
 
-export default ACLPage
+export default Inventory

@@ -87,7 +87,7 @@ const Drawer = props => {
       {...(hidden ? { ...MobileDrawerProps } : { ...DesktopDrawerProps })}
       PaperProps={{
         sx: {
-          backgroundColor: 'background.paper',
+          backgroundColor: '#082846',
           ...(!hidden && skin !== 'bordered' && { boxShadow: 6 }),
           width: navCollapsed && !navHover ? collapsedNavWidth : navWidth,
           borderRight: theme =>

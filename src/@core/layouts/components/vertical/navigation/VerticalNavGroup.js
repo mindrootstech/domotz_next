@@ -182,7 +182,7 @@ const VerticalNavGroup = props => {
                   backgroundColor: 'action.hover'
                 },
                 '& .MuiTypography-root, & :not(.menu-item-meta) > svg': {
-                  color: 'text.primary'
+                  color: 'text.secondary'
                 },
                 '& .menu-item-meta > svg': {
                   color: 'text.secondary'

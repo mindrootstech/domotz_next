@@ -41,14 +41,14 @@ const Error500 = () => {
           <Typography variant='h4' sx={{ mb: 1.5 }}>
             Oops, something went wrong!
           </Typography>
-          <Typography sx={{ mb: 6, color: 'text.secondary' }}>
+          <Typography sx={{ mb: 6, color: 'text.secondaryNew' }}>
             There was an error with the internal server. Please contact your site administrator.
           </Typography>
           <Button href='/' component={Link} variant='contained'>
             Back to Home
           </Button>
         </BoxWrapper>
-        <Img height='500' alt='error-illustration' src='/images/pages/404.png' />
+        {/* <Img height='500' alt='error-illustration' src='/images/pages/404.png' /> */}
       </Box>
       <FooterIllustrations />
     </Box>

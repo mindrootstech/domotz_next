@@ -33,7 +33,6 @@ const VerticalNavSectionTitle = props => {
   // ** Props
   const { item, navHover, settings, collapsedNavWidth, navigationBorderWidth } = props
 
-  console.log("ddddddddddddddddd")
 
   // ** Vars
   const { navCollapsed } = settings

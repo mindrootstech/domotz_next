@@ -32,19 +32,14 @@ const MenuNavLink = styled(ListItemButton)(({ theme }) => ({
   transition: 'padding-left .25s ease-in-out, padding-right .25s ease-in-out',
   '&.active': {
     '&, &:hover': {
-      boxShadow: `0px 2px 6px ${hexToRGBA(theme.palette.primary.main, 0.48)}`,
-      background: `linear-gradient(72.47deg, ${theme.direction === 'ltr' ? theme.palette.primary.main : hexToRGBA(theme.palette.primary.main, 0.7)
-        } 22.16%, ${theme.direction === 'ltr' ? hexToRGBA(theme.palette.primary.main, 0.7) : theme.palette.primary.main
-        } 76.47%)`,
+      boxShadow: ``,
+      background: `#fff`,
       '&.Mui-focusVisible': {
-        background: `linear-gradient(72.47deg, ${theme.palette.primary.dark} 22.16%, ${hexToRGBA(
-          theme.palette.primary.dark,
-          0.7
-        )} 76.47%)`
+        background: `#ffffff`,
       }
     },
     '& .MuiTypography-root, & svg': {
-      color: `${theme.palette.common.white} !important`
+      color: `#082846`
     }
   }
 }))

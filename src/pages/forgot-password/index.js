@@ -8,15 +8,17 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { styled, useTheme } from '@mui/material/styles'
-
+import FormHelperText from '@mui/material/FormHelperText'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
-// ** Demo Imports
-import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
+// ** Third Party Imports
+import * as yup from 'yup'
+import { useForm, Controller } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 // Styled Components
 const ForgotPasswordIllustration = styled('img')(({ theme }) => ({
@@ -60,10 +62,34 @@ const ForgotPassword = () => {
 
   // ** Vars
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
+  const Img = styled('img')(({ theme }) => ({
+    [theme.breakpoints.down('lg')]: {
+      marginBottom: '5px'
+    },
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '5px'
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginBottom: '5px'
+    }
+  }))
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
+  })
+
+  const {
+    control,
+    setError,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(schema)
+  })
 
   return (
-    <Box className='content-right' sx={{ backgroundColor: 'background.paper' }}>
-      {!hidden ? (
+    <Box className='content-right' sx={{ backgroundColor: '#082846', justifyContent: 'center' }}>
+      {/* {!hidden ? (
         <Box
           sx={{
             flex: 1,
@@ -82,7 +108,7 @@ const ForgotPassword = () => {
           />
           <FooterIllustrationsV2 />
         </Box>
-      ) : null}
+      ) : null} */}
       <RightWrapper>
         <Box
           sx={{
@@ -93,50 +119,51 @@ const ForgotPassword = () => {
             justifyContent: 'center'
           }}
         >
-          <Box sx={{ width: '100%', maxWidth: 400 }}>
-            <svg width={34} height={23.375} viewBox='0 0 32 22' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path
-                fillRule='evenodd'
-                clipRule='evenodd'
-                fill={theme.palette.primary.main}
-                d='M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z'
-              />
-              <path
-                fill='#161616'
-                opacity={0.06}
-                fillRule='evenodd'
-                clipRule='evenodd'
-                d='M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z'
-              />
-              <path
-                fill='#161616'
-                opacity={0.06}
-                fillRule='evenodd'
-                clipRule='evenodd'
-                d='M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z'
-              />
-              <path
-                fillRule='evenodd'
-                clipRule='evenodd'
-                fill={theme.palette.primary.main}
-                d='M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z'
-              />
-            </svg>
+          <Box sx={{ width: '100%', maxWidth: 400, border: '1px solid #A8EFFF', padding: '40px', borderRadius: '20px ', backgroundColor: 'rgba(255, 255, 255, 0.08)' }}>
+
             <Box sx={{ my: 6 }}>
-              <Typography sx={{ mb: 1.5, fontWeight: 500, fontSize: '1.625rem', lineHeight: 1.385 }}>
-                Forgot Password? 🔒
-              </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>
-                Enter your email and we&prime;ll send you instructions to reset your password
-              </Typography>
+              <Box sx={{ mt: 1, mb: 6, display: 'flex', justifyContent: 'center' }}> <Img alt='logo' src='/images/logo.svg' /></Box>
+              <Box sx={{ my: 4 }}>
+                <Typography sx={{ mb: 1.5, fontWeight: 800, fontSize: '1.60rem', lineHeight: 1.385, color: '#fff' }}>
+                  {/* {`Welcome to ${themeConfig.templateName}! 👋🏻`} */}Forgot Password?
+                </Typography>
+              </Box>
             </Box>
             <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-              <TextField autoFocus type='email' label='Email' sx={{ display: 'flex', mb: 4 }} />
-              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4 }}>
+              <Controller
+                name='email'
+                control={control}
+                rules={{ required: true }}
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <TextField
+                    autoFocus
+                    // label='Email'
+                    fullWidth
+                    value={value}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    error={Boolean(errors.email)}
+                    InputProps={{
+                      placeholder: 'admin@vuexy.com',
+                      style: {
+                        color: '#fff',
+                        backgroundColor: '#082846',
+                        height: '50px',
+                        borderRadius: '10px',
+                      }
+                    }}
+                    InputLabelProps={{
+                      style: { color: '#fff' },
+                    }}
+                  />
+                )}
+              />
+              {errors.email && <FormHelperText sx={{ color: 'error.main', textTransform: 'capitalize' }}>{errors.email.message}</FormHelperText>}
+              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4, mt: 4, backgroundColor: '#fff', color: '#082846', borderRadius: '10px', '&:hover': { backgroundColor: '#2978C2', color: '#fff' } }}>
                 Send reset link
               </Button>
               <Typography sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', '& svg': { mr: 1 } }}>
-                <LinkStyled href='/login'>
+                <LinkStyled href='/login' sx={{ color: '#fff' }}>
                   <Icon fontSize='1.25rem' icon='tabler:chevron-left' />
                   <span>Back to login</span>
                 </LinkStyled>

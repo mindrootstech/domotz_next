@@ -162,8 +162,7 @@ const SidebarLeft = props => {
                           color: `${statusObj[chat.status]}.main`,
                           backgroundColor: `${statusObj[chat.status]}.main`,
                           boxShadow: theme =>
-                            `0 0 0 2px ${
-                              !activeCondition ? theme.palette.background.paper : theme.palette.common.white
+                            `0 0 0 2px ${!activeCondition ? theme.palette.background.paper : theme.palette.common.white
                             }`
                         }}
                       />
@@ -262,73 +261,73 @@ const SidebarLeft = props => {
 
         return arrToMap !== null
           ? arrToMap.map((contact, index) => {
-              const activeCondition =
-                active !== null && active.id === contact.id && active.type === 'contact' && !hasActiveId(contact.id)
+            const activeCondition =
+              active !== null && active.id === contact.id && active.type === 'contact' && !hasActiveId(contact.id)
 
-              return (
-                <ListItem key={index} disablePadding sx={{ '&:not(:last-child)': { mb: 1 } }}>
-                  <ListItemButton
-                    disableRipple
-                    onClick={() => handleChatClick(hasActiveId(contact.id) ? 'chat' : 'contact', contact.id)}
+            return (
+              <ListItem key={index} disablePadding sx={{ '&:not(:last-child)': { mb: 1 } }}>
+                <ListItemButton
+                  disableRipple
+                  onClick={() => handleChatClick(hasActiveId(contact.id) ? 'chat' : 'contact', contact.id)}
+                  sx={{
+                    py: 2,
+                    px: 3,
+                    width: '100%',
+                    borderRadius: 1,
+                    ...(activeCondition && {
+                      background: theme =>
+                        `linear-gradient(72.47deg, ${theme.palette.primary.main} 22.16%, ${hexToRGBA(
+                          theme.palette.primary.main,
+                          0.7
+                        )} 76.47%) !important`
+                    })
+                  }}
+                >
+                  <ListItemAvatar sx={{ m: 0 }}>
+                    {contact.avatar ? (
+                      <MuiAvatar
+                        alt={contact.fullName}
+                        src={contact.avatar}
+                        sx={{
+                          width: 38,
+                          height: 38,
+                          outline: theme =>
+                            `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
+                        }}
+                      />
+                    ) : (
+                      <CustomAvatar
+                        color={contact.avatarColor}
+                        skin={activeCondition ? 'light-static' : 'light'}
+                        sx={{
+                          width: 38,
+                          height: 38,
+                          fontSize: '1rem',
+                          outline: theme =>
+                            `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
+                        }}
+                      >
+                        {getInitials(contact.fullName)}
+                      </CustomAvatar>
+                    )}
+                  </ListItemAvatar>
+                  <ListItemText
                     sx={{
-                      py: 2,
-                      px: 3,
-                      width: '100%',
-                      borderRadius: 1,
-                      ...(activeCondition && {
-                        background: theme =>
-                          `linear-gradient(72.47deg, ${theme.palette.primary.main} 22.16%, ${hexToRGBA(
-                            theme.palette.primary.main,
-                            0.7
-                          )} 76.47%) !important`
-                      })
+                      my: 0,
+                      ml: 3,
+                      ...(activeCondition && { '& .MuiTypography-root': { color: 'common.white' } })
                     }}
-                  >
-                    <ListItemAvatar sx={{ m: 0 }}>
-                      {contact.avatar ? (
-                        <MuiAvatar
-                          alt={contact.fullName}
-                          src={contact.avatar}
-                          sx={{
-                            width: 38,
-                            height: 38,
-                            outline: theme =>
-                              `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
-                          }}
-                        />
-                      ) : (
-                        <CustomAvatar
-                          color={contact.avatarColor}
-                          skin={activeCondition ? 'light-static' : 'light'}
-                          sx={{
-                            width: 38,
-                            height: 38,
-                            fontSize: '1rem',
-                            outline: theme =>
-                              `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
-                          }}
-                        >
-                          {getInitials(contact.fullName)}
-                        </CustomAvatar>
-                      )}
-                    </ListItemAvatar>
-                    <ListItemText
-                      sx={{
-                        my: 0,
-                        ml: 3,
-                        ...(activeCondition && { '& .MuiTypography-root': { color: 'common.white' } })
-                      }}
-                      primary={<Typography sx={{ fontWeight: 500 }}>{contact.fullName}</Typography>}
-                      secondary={
-                        <Typography noWrap sx={{ ...(!activeCondition && { color: 'text.secondary' }) }}>
-                          {contact.about}
-                        </Typography>
-                      }
-                    />
-                  </ListItemButton>
-                </ListItem>
-              )
-            })
+                    primary={<Typography sx={{ fontWeight: 500 }}>{contact.fullName}</Typography>}
+                    secondary={
+                      <Typography noWrap sx={{ ...(!activeCondition && { color: 'text.secondary' }) }}>
+                        {contact.about}
+                      </Typography>
+                    }
+                  />
+                </ListItemButton>
+              </ListItem>
+            )
+          })
           : null
       }
     }

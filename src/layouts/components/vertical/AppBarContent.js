@@ -58,7 +58,7 @@ const AppBarContent = props => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-        <Typography sx={{ fontWeight: 500, fontSize: '2rem', lineHeight: 1.385, color: '#4D4D4D' }}>
+        <Typography sx={{ fontWeight: 500, fontSize: '1.5rem', lineHeight: 1.385, color: '#4D4D4D' }}>
           {pageName}
         </Typography>
         {hidden && !settings.navHidden ? (

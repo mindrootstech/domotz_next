@@ -4,8 +4,24 @@ const navigation = () => {
       path: '/admin/dashboards/analytics',
       action: '',
       subject: 'admin-page',
-      icon: 'tabler:smart-home',
+      icon: 'tabler:dashboard',
       title: 'Dashboards',
+      type: 'admin'
+    },
+    {
+      path: '/admin/sites-explore',
+      action: '',
+      subject: 'user-page',
+      icon: 'tabler:globe',
+      title: 'Sites Explore',
+      type: 'admin'
+    },
+    {
+      path: '/admin/inventory',
+      action: '',
+      subject: 'user-page',
+      icon: 'tabler:3d-cube-sphere',
+      title: 'Inventory',
       type: 'admin'
     },
     {
@@ -16,30 +32,25 @@ const navigation = () => {
         {
           title: 'Add User',
           path: '/admin/add-user',
+          icon: 'tabler:user-plus',
           type: 'admin'
 
         },
         {
-          title: 'All User',
+          title: 'All Users',
           path: '/admin/all-user',
+          icon: 'tabler:user-check',
           type: 'admin'
         },
 
       ]
     },
-    {
-      path: '/sites-explore',
-      action: 'read',
-      subject: 'user-page',
-      icon: 'tabler:shield',
-      title: 'Sites Explore',
-      type: 'customer'
-    },
+
     {
       path: '/inventory',
       action: 'read',
       subject: 'user-page',
-      icon: 'tabler:shield',
+      icon: 'tabler:3d-cube-sphere',
       title: 'Inventory',
       type: 'customer'
     },

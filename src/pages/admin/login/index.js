@@ -5,18 +5,13 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 // ** MUI Components
-import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
 import FormHelperText from '@mui/material/FormHelperText'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -130,7 +125,17 @@ const LoginPage = () => {
     })
   }
   const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'
-
+  const Img = styled('img')(({ theme }) => ({
+    [theme.breakpoints.down('lg')]: {
+      marginBottom: '5px'
+    },
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '5px'
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginBottom: '5px'
+    }
+  }))
   return (
     <Box className='content-right' sx={{ backgroundColor: '#082846', justifyContent: 'center' }} >
       {/* {!hidden ? (
@@ -163,16 +168,19 @@ const LoginPage = () => {
           <Box sx={{ width: '100%', maxWidth: 400, border: '1px solid #A8EFFF', padding: '40px', borderRadius: '20px ', backgroundColor: 'rgba(255, 255, 255, 0.08)' }}>
 
             <Box sx={{ my: 6 }}>
-              <Typography sx={{ mb: 1.5, fontWeight: 500, fontSize: '1.20rem', lineHeight: 1.385, color: '#fff' }}>
-                {`Welcome to ${themeConfig.templateName} Admin! 👋🏻`}
-              </Typography>
+              <Box sx={{ mt: 1, mb: 6, display: 'flex', justifyContent: 'center' }}> <Img alt='logo' src='/images/logo.svg' /></Box>
+              <Box sx={{ my: 4 }}>
+                <Typography sx={{ mb: 1.5, fontWeight: 800, fontSize: '1.60rem', lineHeight: 1.385, color: '#fff' }}>
+                  {/* {`Welcome to ${themeConfig.templateName}! 👋🏻`} */}Login
+                </Typography>
+              </Box>
               {/* <Typography sx={{ color: 'text.secondary' }}>
                 Please sign-in to your account and start the adventure
               </Typography> */}
             </Box>
             <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
               <FormControl fullWidth sx={{ mb: 4 }}>
-                <Typography sx={{ color: '#fff', fontSize: '14px' }}>Email </Typography>
+                <Typography sx={{ color: '#fff', fontSize: '14px', mb: '5px' }}>Email </Typography>
                 <Controller
                   name='email'
                   control={control}
@@ -189,7 +197,9 @@ const LoginPage = () => {
                         placeholder: 'admin@vuexy.com',
                         style: {
                           color: '#fff',
-                          backgroundColor: '#082846'
+                          backgroundColor: '#082846',
+                          height: '50px',
+                          borderRadius: '10px',
                         }
                       }}
                       InputLabelProps={{
@@ -201,7 +211,7 @@ const LoginPage = () => {
                 {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
               </FormControl>
               <FormControl fullWidth sx={{ mb: 1.5 }}>
-                <Typography sx={{ color: '#fff', fontSize: '14px' }}>Password </Typography>
+                <Typography sx={{ color: '#fff', fontSize: '14px', mb: '5px' }}>Password </Typography>
                 <Controller
                   name='password'
                   control={control}
@@ -219,7 +229,9 @@ const LoginPage = () => {
                         placeholder: 'Password',
                         style: {
                           color: '#fff',
-                          backgroundColor: '#082846'
+                          backgroundColor: '#082846',
+                          height: '50px',
+                          borderRadius: '10px',
                         }
                       }}
                       InputLabelProps={{
@@ -246,14 +258,28 @@ const LoginPage = () => {
               >
                 <FormControlLabel
                   label='Remember Me'
-                  control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} style={{ borderColor: 'red' }} />}
+                  control={<Checkbox checked={rememberMe} color="success" onChange={e => setRememberMe(e.target.checked)}
+                    sx={{
+                      color: '#000',
+                      '&:checked': {
+                        color: '#000',
+                        backgroundColor: '#000'
+                      },
+                      '&:unchecked': {
+                        color: '#000',
+                        backgroundColor: '#000'
+                      }
+                    }}
+                  />}
                 />
 
               </Box>
               <Box sx={{
                 mb: 1.75,
-              }}> <LinkStyled href='/forgot-password' sx={{ fontSize: '14px' }}>Forgot Password?</LinkStyled></Box>
-              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4, backgroundColor: '#fff', color: '#082846', borderRadius: '10px' }}>
+              }}>
+                {/* <LinkStyled href='/forgot-password' sx={{ fontSize: '14px' }}>Forgot Password?</LinkStyled> */}
+              </Box>
+              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 4, backgroundColor: '#fff', color: '#082846', borderRadius: '10px', '&:hover': { backgroundColor: '#2978C2', color: '#fff' } }}>
                 Login
               </Button>
 

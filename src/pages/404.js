@@ -39,16 +39,16 @@ const Error404 = () => {
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <BoxWrapper>
           <Typography variant='h4' sx={{ mb: 1.5 }}>
-            Page Not Found :(
+            Page Not Found :
           </Typography>
-          <Typography sx={{ mb: 6, color: 'text.secondary' }}>
+          <Typography sx={{ mb: 6, color: 'text.secondaryNew' }}>
             Oops! 😖 The requested URL was not found on this server.
           </Typography>
           <Button href='/' component={Link} variant='contained'>
             Back to Home
           </Button>
         </BoxWrapper>
-        <Img height='500' alt='error-illustration' src='/images/pages/404.png' />
+        {/* <Img height='500' alt='error-illustration' src='/images/pages/404.png' /> */}
       </Box>
       <FooterIllustrations />
     </Box>

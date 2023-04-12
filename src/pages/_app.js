@@ -55,7 +55,6 @@ import 'src/iconify-bundle/icons-bundle-react'
 
 // ** Global css styles
 import '../../styles/globals.css'
-import { ToastContainer } from 'react-nextjs-toast'
 const clientSideEmotionCache = createEmotionCache()
 
 // ** Pace Loader
@@ -80,7 +79,6 @@ const Guard = ({ children, authGuard, guestGuard }) => {
     return <AuthGuard fallback={<Spinner />}>{children}</AuthGuard>
   }
 }
-console.log({ Guard })
 // ** Configure JSS & ClassName
 const App = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
@@ -109,7 +107,6 @@ const App = props => {
         </Head>
 
         <AuthProvider>
-          <ToastContainer align={"right"} />
           <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
             <SettingsConsumer>
               {({ settings }) => {

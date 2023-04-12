@@ -41,15 +41,15 @@ const Error401 = () => {
           <Typography variant='h4' sx={{ mb: 1.5 }}>
             You are not authorized!
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
+          <Typography sx={{ color: 'text.secondaryNew' }}>
             You do not have permission to view this page using the credentials that you have provided while login.
           </Typography>
-          <Typography sx={{ mb: 6, color: 'text.secondary' }}>Please contact your site administrator.</Typography>
+          <Typography sx={{ mb: 6, color: 'text.secondaryNew' }}>Please contact your site administrator.</Typography>
           <Button href='/' component={Link} variant='contained'>
             Back to Home
           </Button>
         </BoxWrapper>
-        <Img height='500' alt='error-illustration' src='/images/pages/401.png' />
+        {/* <Img height='500' alt='error-illustration' src='/images/pages/401.png' /> */}
       </Box>
       <FooterIllustrations />
     </Box>

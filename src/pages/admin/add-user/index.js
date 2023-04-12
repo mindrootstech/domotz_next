@@ -24,8 +24,8 @@ import { http } from 'src/hooks/httpRequset'
 import authConfig from 'src/configs/auth'
 
 //toster
-import { toast, ToastContainer } from 'react-nextjs-toast'
 
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddUser = () => {
 
@@ -55,11 +55,7 @@ const AddUser = () => {
     const endPoint = authConfig.userCreateEndpoint
     const apiType = 'POST'
     const res = await http(data, endPoint, apiType)
-    console.log(res, 'httphttphttphttp')
-    toast.notify(res?.data?.message, {
-      duration: 5,
-      type: res?.data?.type || 'info'
-    })
+    toast(res?.data?.message)
   }
 
 
@@ -69,7 +65,7 @@ const AddUser = () => {
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <Card>
-            <CardHeader title='User Register' />
+            <CardHeader title='User Register' sx={{ color: '#000' }} />
             <CardContent>
               <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={5}>
@@ -167,8 +163,8 @@ const AddUser = () => {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Button type='submit' variant='contained' size='large'>
-                      Submit
+                    <Button size='large' type='submit' variant='contained' sx={{ mb: 4, backgroundColor: '#082846', color: '#fff', borderRadius: '10px', '&:hover': { backgroundColor: '#2978C2', color: '#fff' } }}>
+                      Add User
                     </Button>
                   </Grid>
                 </Grid>
@@ -177,7 +173,7 @@ const AddUser = () => {
           </Card>
         </Grid>
       </Grid>
-    </DatePickerWrapper>
+    </DatePickerWrapper >
   )
 }
 

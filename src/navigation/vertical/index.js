@@ -1,13 +1,13 @@
 const navigation = () => {
   return [
-    {
-      path: '/admin/dashboards/analytics',
-      action: '',
-      subject: 'admin-page',
-      icon: 'tabler:dashboard',
-      title: 'Dashboards',
-      type: 'admin'
-    },
+    // {
+    //   path: '/admin/dashboards/analytics',
+    //   action: '',
+    //   subject: 'admin-page',
+    //   icon: 'tabler:dashboard',
+    //   title: 'Dashboards',
+    //   type: 'admin'
+    // },
     {
       path: '/admin/sites-explore',
       action: '',

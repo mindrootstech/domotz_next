@@ -6,6 +6,8 @@ export default {
   userLoginEndpoint: base_url + 'login',
   logoutEndpoint: base_url + 'logout',
   userCreateEndpoint: base_url + 'register',
+  userforgetPasswordEndpoint: base_url + 'forget-password',
+  userresetPasswordEndpoint: base_url + 'reset-password',
   registerEndpoint: '/jwt/register',
   storageTokenKeyName: 'accessToken',
   onTokenExpiration: 'refreshToken' // logout | refreshToken

@@ -45,8 +45,7 @@ const AuthProvider = ({ children }) => {
         setUser(null)
         setLoading(false)
         const returnUrl = router.pathname.includes('admin')
-        returnUrl ? router.replace('/admin/login') : router.replace('/login')
-
+        returnUrl ?? router.replace('/admin/login')
       }
     }
     initAuth()

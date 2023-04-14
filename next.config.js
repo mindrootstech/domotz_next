@@ -8,6 +8,9 @@ const path = require('path')
 module.exports = {
   trailingSlash: true,
   reactStrictMode: false,
+  env: {
+    googleMapKey: 'AIzaSyCHa26D4cUJbzCVgDuJPeQfqOJKb-8ifZQ',
+  },
   webpack: config => {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -15,5 +18,6 @@ module.exports = {
     }
 
     return config
-  }
+  },
+
 }

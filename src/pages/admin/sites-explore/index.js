@@ -11,6 +11,10 @@ import { useForm } from 'react-hook-form'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Icon from 'src/@core/components/icon'
+
+//google map
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+
 const SiteExplore = () => {
   // ** Hooks
   const {
@@ -22,6 +26,44 @@ const SiteExplore = () => {
   } = useForm({
     mode: 'onBlur',
   })
+
+  // Google Map Location Manager
+
+  const libraries = ["places"];
+  const mapContainerStyle = {
+    width: '100%',
+    height: '550px',
+    borderRadius: '10px',
+  };
+  const center = {
+    lat: 30.7333,
+    lng: 76.7794,
+  };
+
+  const markers = [
+    {
+      position: { lat: 30.7333, lng: 76.7794 },
+      title: "Marker 1"
+    },
+    {
+      position: { lat: 30.6425, lng: 76.8173 },
+      title: "Marker 2"
+    },
+    {
+      position: { lat: 30.6953, lng: 76.8436 },
+      title: "Marker 3"
+    },
+    {
+      position: { lat: 30.3453, lng: 76.3234 },
+      title: "Marker 4"
+    },
+  ];
+
+  //Map 
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.googleMapKey,
+    libraries,
+  });
 
   return (
     < Grid container spacing={6} >
@@ -106,7 +148,22 @@ const SiteExplore = () => {
       </Grid>
       <Grid item md={5} xs={12}>
         <Box sx={{ backgroundColor: '#EFF7FF', padding: '10px', borderRadius: '10px' }}>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15282225.79979123!2d73.7250245393691!3d20.750301298393563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1587818542745!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style={{ borderRadius: '10px' }} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          {loadError && "Error loading maps"}
+          {!isLoaded ? "Loading maps..." :
+            < GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              zoom={10}
+              center={center}
+            >
+              {markers.map(marker => (
+                <Marker
+                  key={marker.title}
+                  position={marker.position}
+                  title={marker.title}
+                />
+              ))}
+            </GoogleMap>
+          }
         </Box>
       </Grid>
 

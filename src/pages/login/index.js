@@ -86,13 +86,19 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().min(5).required(),
+  password: yup.string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+    ),
   rememberMe: yup.boolean()
 })
 
 const defaultValues = {
-  password: '123456',
-  email: 'user@gmail.com'
+  password: 'Bharat@123',
+  email: 'bharat@mind-roots.com'
 }
 
 const LoginPage = () => {
@@ -261,7 +267,7 @@ const LoginPage = () => {
               >
                 <FormControlLabel
                   label='Remember Me'
-                  control={<Checkbox checked={rememberMe} color="success" onChange={e => setRememberMe(e.target.checked)} />}
+                  control={<Checkbox checked={rememberMe} color="info" onChange={e => setRememberMe(e.target.checked)} />}
                 />
               </Box>
               <Box sx={{

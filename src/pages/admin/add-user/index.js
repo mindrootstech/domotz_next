@@ -35,7 +35,7 @@ const AddUser = () => {
     firstname: yup.string().required('Required'),
     lastname: yup.string(),
     number: yup.number(),
-    password: Yup.string()
+    password: yup.string()
       .required("Password is required")
       .min(8, "Password must be at least 8 characters")
       .matches(
@@ -63,11 +63,15 @@ const AddUser = () => {
     const res = await http(data, endPoint, apiType)
     toast(res?.data?.message)
   }
+  const inputLabelProps = {
+    style: {
+      color: '#000', // set the color of the label text
+    },
+  };
 
 
   return (
     <DatePickerWrapper>
-
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <Card>
@@ -90,6 +94,7 @@ const AddUser = () => {
                           </InputAdornment>
                         )
                       }}
+                      InputLabelProps={inputLabelProps}
                     />
                     {errors.firstname && <FormHelperText sx={{ color: 'error.main' }}>{errors.firstname.message}</FormHelperText>}
                   </Grid>
@@ -108,6 +113,7 @@ const AddUser = () => {
                           </InputAdornment>
                         )
                       }}
+                      InputLabelProps={inputLabelProps}
                     />
                     {errors.lastname && <FormHelperText sx={{ color: 'error.main' }}>{errors.lastname.message}</FormHelperText>}
                   </Grid>
@@ -127,6 +133,7 @@ const AddUser = () => {
                           </InputAdornment>
                         )
                       }}
+                      InputLabelProps={inputLabelProps}
                     />
                     {errors.email && <FormHelperText sx={{ color: 'error.main' }}>{errors.email.message}</FormHelperText>}
                   </Grid>
@@ -146,6 +153,7 @@ const AddUser = () => {
                           </InputAdornment>
                         )
                       }}
+                      InputLabelProps={inputLabelProps}
                     />
                     {errors.password && <FormHelperText sx={{ color: 'error.main' }}>{errors.password.message}</FormHelperText>}
                   </Grid>
@@ -165,6 +173,7 @@ const AddUser = () => {
                           </InputAdornment>
                         )
                       }}
+                      InputLabelProps={inputLabelProps}
                     />
                   </Grid>
 

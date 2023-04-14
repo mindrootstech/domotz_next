@@ -101,7 +101,7 @@ const Inventory = () => {
 
   //Map 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.googleMapKey,
+    googleMapsApiKey: '',
     libraries,
   });
 

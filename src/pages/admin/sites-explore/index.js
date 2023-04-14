@@ -61,7 +61,7 @@ const SiteExplore = () => {
 
   //Map 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.googleMapKey,
+    googleMapsApiKey: 'dfgfdgfgfdg',
     libraries,
   });
 
